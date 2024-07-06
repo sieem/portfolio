@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import NavLink from "./NavLink.astro";
+
+const projects = (await getCollection("project")).sort(
+  (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
+);
+---
+
+  <nav>
+    {projects.map((project) => 
+      <NavLink href={'/project/' + project.slug}>{project.data.title}</NavLink>
+    )}
+  </nav>
+<style></style>

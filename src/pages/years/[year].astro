@@ -1,0 +1,40 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import Layout from "../../components/Layout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("project");
+  const projectsPerYear = (await getCollection("project")).reduce((acc, project) => {
+    const year = project.data.date.getFullYear();
+    if (!acc[year]) {
+      acc[year] = [];
+    }
+
+    acc[year]!.push(project);
+    return acc;
+  }, [] as CollectionEntry<"project">[][]);
+  const years = [...new Set(projects.map((project) => project.data.date.getFullYear()))];
+
+  return years.map((year) => ({
+    params: { year: year },
+    props: projectsPerYear[year as number],
+  }));
+}
+type Props = CollectionEntry<"project">[];
+
+const projects = Object.values(Astro.props);
+---
+
+<Layout>
+  <section>
+    <ul>
+      {
+        projects.map((project) => (
+          <li>
+            <a href={`/project/${project.slug}/`}>{project.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

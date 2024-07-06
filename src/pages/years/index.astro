@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../components/Layout.astro";
+
+const projectsPerYear = (await getCollection("project")).reduce((acc, project) => {
+  const year = project.data.date.getFullYear();
+  if (!acc[year]) {
+    acc[year] = [];
+  }
+
+  acc[year]!.push(project);
+  return acc;
+}, [] as CollectionEntry<"project">[][]);
+---
+
+<Layout>
+  <section>
+    <ul>
+      {
+        projectsPerYear.map((projects, year) => (
+          <li>
+            <a href={`/years/${year}`}>{year}</a>
+            <ul>
+              {projects.map((projet) => (
+                <li>
+                  <a href={`/project/${projet.slug}`}>{projet.data.title}</a>
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>
