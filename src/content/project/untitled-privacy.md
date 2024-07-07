@@ -1,6 +1,6 @@
 ---
 title: Untitled Privacy
-date: 2014-06-05T20:20:41.000Z
+pubDate: 2014-06-05T20:20:41.000Z
 description: ''
 image: ''
 ---
