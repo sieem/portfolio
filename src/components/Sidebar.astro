@@ -1,0 +1,32 @@
+---
+import { SITE_TITLE } from "../consts";
+import Nav from "./Nav.astro";
+
+const today = new Date();
+---
+
+<aside>
+  <nav>
+    <h2><a href="/">{SITE_TITLE}</a></h2>
+  </nav>
+  <Nav />
+  <footer>
+    &copy; {today.getFullYear()} Siem Lasseel. All rights reserved.
+  </footer>
+</aside>
+
+<style>
+  aside {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+  }
+  h2 a {
+    color: var(--gray-dark);
+    text-decoration: none;
+  }
+  h2 a:hover {
+    text-decoration: underline;
+  }
+</style>
