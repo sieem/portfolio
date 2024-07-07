@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, type CollectionEntry } from "astro:content";
+import { readdir } from "fs/promises";
+import Layout from "../../components/Layout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("project");
+  return Promise.all(
+    projects.map(async (project) => ({
+      params: { slug: project.slug },
+      props: {
+        ...project,
+        images: await readdir(`public/projects/${project.slug}`)
+          .then((images) =>
+            images.map(
+              // Vite needs a hardcoded file extension to import images
+              (file) =>
+                import(
+                  `../../../public/projects/${project.slug}/${file.replace(".jpg", "")}.jpg`
+                )
+            )
+          )
+          .catch(
+            () =>
+              void console.warn(
+                `WARN: Did not find folder: public/projects/${project.slug}`
+              ) && []
+          ),
+      },
+    }))
+  );
+}
+type Props = CollectionEntry<"project"> & { images: string[] };
+
+const project = Astro.props;
+const { Content } = await project.render();
+---
+
+<Layout description={project.data.description}>
+  <article>
+    <div class="text">
+      <Content />
+    </div>
+
+    <div class="images">
+      {
+        project.images &&
+          project.images.map((image) => <Image alt="" inferSize src={image} />)
+      }
+    </div>
+  </article>
+
+  <style>
+    article {
+      display: grid;
+      grid-template-columns: 20rem 1fr;
+      grid-template-rows: calc(100vh - 15px);  /* 15px is the height of the scrollbar */
+    }
+
+    article .text {
+      padding: 2rem;
+      overflow-y: auto;
+      font-size: 0.8rem;
+    }
+
+    article .images {
+      display: flex;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    article .images img {
+      height: 100%;
+      width: auto;
+    }
+  </style>
+</Layout>

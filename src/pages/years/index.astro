@@ -1,6 +1,6 @@
 ---
-import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import Layout from "../../components/Layout.astro";
 
 const projectsPerYear = (await getCollection("project")).reduce((acc, project) => {
@@ -24,7 +24,7 @@ const projectsPerYear = (await getCollection("project")).reduce((acc, project) =
             <ul>
               {projects.map((projet) => (
                 <li>
-                  <a href={`/project/${projet.slug}`}>{projet.data.title}</a>
+                  <a href={`/projects/${projet.slug}`}>{projet.data.title}</a>
                 </li>
               ))}
             </ul>
