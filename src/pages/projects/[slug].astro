@@ -55,13 +55,19 @@ const { Content } = await project.render();
     article {
       display: grid;
       grid-template-columns: 20rem 1fr;
-      grid-template-rows: calc(100vh - 15px);  /* 15px is the height of the scrollbar */
+      grid-template-rows: calc(
+        100vh - 15px
+      ); /* 15px is the height of the scrollbar */
     }
 
     article .text {
       padding: 2rem;
       overflow-y: auto;
       font-size: 0.8rem;
+    }
+
+    article .text:not(:has(*)) {
+      display: none;
     }
 
     article .images {
