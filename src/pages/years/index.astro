@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import Layout from "../../components/Layout.astro";
 
 const projectsPerYear = (await getCollection("project")).reduce((acc, project) => {
-  const year = project.data.date.getFullYear();
+  const year = project.data.pubDate.getFullYear();
   if (!acc[year]) {
     acc[year] = [];
   }

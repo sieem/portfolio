@@ -1,6 +1,6 @@
 ---
 title: wrld_#1
-date: 2015-06-17T11:50:02.000Z
+pubDate: 2015-06-17T11:50:02.000Z
 description: ''
 image: ''
 ---

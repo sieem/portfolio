@@ -1,11 +1,11 @@
 ---
-import { type CollectionEntry, getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 import Layout from "../../components/Layout.astro";
 
 export async function getStaticPaths() {
   const projects = await getCollection("project");
   const projectsPerYear = (await getCollection("project")).reduce((acc, project) => {
-    const year = project.data.date.getFullYear();
+    const year = project.data.pubDate.getFullYear();
     if (!acc[year]) {
       acc[year] = [];
     }
@@ -13,7 +13,7 @@ export async function getStaticPaths() {
     acc[year]!.push(project);
     return acc;
   }, [] as CollectionEntry<"project">[][]);
-  const years = [...new Set(projects.map((project) => project.data.date.getFullYear()))];
+  const years = [...new Set(projects.map((project) => project.data.pubDate.getFullYear()))];
 
   return years.map((year) => ({
     params: { year: year },

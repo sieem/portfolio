@@ -1,6 +1,6 @@
 ---
 title: The Digital Age I
-date: 2014-04-18T10:43:52.000Z
+pubDate: 2014-04-18T10:43:52.000Z
 description: ''
 image: ''
 ---

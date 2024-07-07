@@ -1,6 +1,6 @@
 ---
 title: usa c1
-date: 2014-05-28T16:30:39.000Z
+pubDate: 2014-05-28T16:30:39.000Z
 description: ''
 image: ''
 ---
