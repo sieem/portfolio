@@ -3,13 +3,27 @@ import { getCollection } from "astro:content";
 import NavLink from "./NavLink.astro";
 
 const projects = (await getCollection("project")).sort(
-  (a, b) => a.data.date.valueOf() - b.data.date.valueOf()
-);
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+)
 ---
 
-  <nav>
-    {projects.map((project) => 
-      <NavLink href={'/projects/' + project.slug}>{project.data.title}</NavLink>
-    )}
-  </nav>
-<style></style>
+<nav>
+  <ul>
+    {
+      projects.map((project) => (
+        <li>
+          <NavLink href={"/projects/" + project.slug}>
+            {project.data.title}
+          </NavLink>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+</style>
