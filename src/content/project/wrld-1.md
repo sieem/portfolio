@@ -10,4 +10,6 @@ This world, the first out of my archive, is a glimpse of a world which is put to
 
 Lightboxes,244x39cm each.
 
-<iframe style="padding-right: 20px;" src="https://player.vimeo.com/video/134702451?autoplay=0&amp;loop=1&amp;color=ffffff&amp;title=0&amp;byline=0&amp;portrait=0&amp;wmode=transparent" width="1246" height="701" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" __idm_id__="230401"></iframe>
+<video width="100%" height="auto" controls>
+  <source src="../public/videos/wrld-1/wrld_1 (720p).mp4" type="video/mp4">
+</video>
