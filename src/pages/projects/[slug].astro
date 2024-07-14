@@ -11,20 +11,20 @@ export async function getStaticPaths() {
       params: { slug: project.slug },
       props: {
         ...project,
-        images: await readdir(`public/projects/${project.slug}`)
+        images: await readdir(`public/images/${project.slug}`)
           .then((images) =>
             images.map(
               // Vite needs a hardcoded file extension to import images
               (file) =>
                 import(
-                  `../../../public/projects/${project.slug}/${file.replace(".jpg", "")}.jpg`
+                  `../../../public/images/${project.slug}/${file.replace(".jpg", "")}.jpg`
                 )
             )
           )
           .catch(
             () =>
               void console.warn(
-                `WARN: Did not find folder: public/projects/${project.slug}`
+                `WARN: Did not find folder: public/images/${project.slug}`
               ) && []
           ),
       },
