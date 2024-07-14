@@ -52,14 +52,6 @@ const { Content } = await project.render();
   </article>
 
   <style>
-    article {
-      display: grid;
-      grid-template-columns: 20rem 1fr;
-      grid-template-rows: calc(
-        100vh - 15px
-      ); /* 15px is the height of the scrollbar */
-    }
-
     article .text {
       padding: 2rem;
       overflow-y: auto;
@@ -72,13 +64,36 @@ const { Content } = await project.render();
 
     article .images {
       display: flex;
+      flex-direction: column;
       gap: 1rem;
-      padding: 2rem;
+      padding: 1rem;
     }
 
     article .images img {
-      height: 100%;
-      width: auto;
+      width: 100%;
+      height: auto;
+    }
+
+    @media screen and (min-width: 720px) {
+      article {
+        display: grid;
+        grid-template-columns: 20rem 1fr;
+        grid-template-rows: calc(
+          100vh - 15px
+        ); /* 15px is the height of the scrollbar */
+      }
+
+      article .images {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding: 1rem;
+      }
+
+      article .images img {
+        height: 100%;
+        width: auto;
+      }
     }
   </style>
 </Layout>
