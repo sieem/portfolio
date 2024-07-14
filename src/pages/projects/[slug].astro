@@ -83,6 +83,10 @@ const { Content } = await project.render();
         ); /* 15px is the height of the scrollbar */
       }
 
+      article:not(:has(.images *)) {
+        grid-template-columns: 1fr;
+      }
+
       article .images {
         display: flex;
         flex-direction: row;
