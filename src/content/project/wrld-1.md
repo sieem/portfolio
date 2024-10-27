@@ -11,5 +11,5 @@ This world, the first out of my archive, is a glimpse of a world which is put to
 Lightboxes,244x39cm each.
 
 <video width="100%" height="auto" controls>
-  <source src="../public/videos/wrld-1/wrld_1 (720p).mp4" type="video/mp4">
+  <source src="/videos/wrld-1/wrld_1 (720p).mp4" type="video/mp4">
 </video>

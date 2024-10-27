@@ -5,5 +5,5 @@ description: ''
 image: ''
 ---
 <video width="1280" height="720" controls>
-  <source src="../public/videos/tempture/tempture_-_siem_lasseel (720p).mp4" type="video/mp4">
+  <source src="/videos/tempture/tempture_-_siem_lasseel (720p).mp4" type="video/mp4">
 </video>
