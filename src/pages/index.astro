@@ -1,11 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import image from "../../public/home.jpg";
+import Article from "../components/Article.astro";
 import Layout from "../components/Layout.astro";
 ---
 
 <Layout>
-  <section>
-    <Image alt="" src={image} />
-  </section>
+  <Article images={[image as unknown as string]} />
 </Layout>

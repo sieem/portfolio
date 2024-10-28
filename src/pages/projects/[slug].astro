@@ -1,7 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { readdir } from "fs/promises";
+import Article from "../../components/Article.astro";
 import Layout from "../../components/Layout.astro";
 
 export async function getStaticPaths() {
@@ -33,71 +33,10 @@ export async function getStaticPaths() {
 }
 type Props = CollectionEntry<"project"> & { images: string[] };
 
-const project = Astro.props;
-const { Content } = await project.render();
+const { images, render, data: {description} } = Astro.props;
+const { Content } = await render();
 ---
 
-<Layout description={project.data.description}>
-  <article>
-    <div class="text">
-      <Content />
-    </div>
-
-    <div class="images">
-      {
-        project.images &&
-          project.images.map((image) => <Image alt="" inferSize src={image} />)
-      }
-    </div>
-  </article>
-
-  <style>
-    article .text {
-      padding: 2rem;
-      overflow-y: auto;
-      font-size: 0.8rem;
-    }
-
-    article .text:not(:has(*)) {
-      display: none;
-    }
-
-    article .images {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    article .images img {
-      width: 100%;
-      height: auto;
-    }
-
-    @media screen and (min-width: 720px) {
-      article {
-        display: grid;
-        grid-template-columns: 20rem 1fr;
-        grid-template-rows: calc(
-          100vh - 15px
-        ); /* 15px is the height of the scrollbar */
-      }
-
-      article:not(:has(.images *)) {
-        grid-template-columns: 1fr;
-      }
-
-      article .images {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        padding: 1rem;
-      }
-
-      article .images img {
-        height: 100%;
-        width: auto;
-      }
-    }
-  </style>
+<Layout description={description}>
+  <Article Content={Content} images={images} />
 </Layout>

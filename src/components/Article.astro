@@ -1,0 +1,75 @@
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { Image } from "astro:assets";
+
+type Props = { Content?: AstroComponentFactory; images: string[] };
+
+const { Content, images } = Astro.props;
+---
+
+<article>
+  <div class="scrollContainer">
+    {
+      Content && (
+        <div class="text">
+          <Content />
+        </div>
+      )
+    }
+
+    {images && images.map((image) => <Image alt="" inferSize src={image} />)}
+  </div>
+</article>
+
+<style>
+  article .text {
+    padding: 2rem;
+    overflow-y: auto;
+    font-size: 0.8rem;
+  }
+
+  article .text:not(:has(*)) {
+    display: none;
+  }
+
+  article .scrollContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  article .scrollContainer img {
+    width: 100%;
+    height: auto;
+  }
+
+  @media screen and (min-width: 720px) {
+    article {
+      display: grid;
+      grid-template-columns: 1fr;
+      height: 100%;
+    }
+
+    article .text {
+      min-width: 16rem;
+    }
+
+    article:not(:has(.images *)) {
+      grid-template-columns: 1fr;
+    }
+
+    article .scrollContainer {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      padding: 1rem;
+      overflow-x: auto;
+    }
+
+    article .scrollContainer img {
+      height: 100%;
+      width: auto;
+    }
+  }
+</style>

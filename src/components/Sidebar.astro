@@ -4,7 +4,6 @@ import MenuButton from "./MenuButton.astro";
 import MenuButtonClose from "./MenuButtonClose.astro";
 import Nav from "./Nav.astro";
 import Footer from "./Footer.astro";
-
 ---
 
 <aside>
@@ -93,6 +92,8 @@ import Footer from "./Footer.astro";
   @media screen and (min-width: 720px) {
     aside {
       padding-bottom: 2rem;
+      overflow-y: auto;
+      min-width: 9rem;
     }
 
     button.nav {
