@@ -27,6 +27,11 @@ const { Content, images } = Astro.props;
     font-size: 0.8rem;
   }
 
+  article .text :global(video) {
+    max-width: 100%;
+    height: auto;
+  }
+
   article .text:not(:has(*)) {
     display: none;
   }
